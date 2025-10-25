@@ -1,4 +1,5 @@
 package com.AutomationDemoSite.genernic.listenerUtility;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -19,6 +20,10 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
+/**
+ * author Subhashree_Panigrahi ListenerUtility created to handle run time events
+ * 
+ */
 public class ListImpClass implements ITestListener, ISuiteListener {
 
 	public ExtentSparkReporter spark;
@@ -28,8 +33,8 @@ public class ListImpClass implements ITestListener, ISuiteListener {
 	public void onStart(ISuite suite) {
 		System.out.println("Report Configuration");
 
-		String time = new Date().toString().replace(" ","_").replace(":","_");
-		ExtentSparkReporter spark = new ExtentSparkReporter("./AdvanceReporter/report_"+time+".html");
+		String time = new Date().toString().replace(" ", "_").replace(":", "_");
+		ExtentSparkReporter spark = new ExtentSparkReporter("./AdvanceReporter/report_" + time + ".html");
 		spark.config().setDocumentTitle("CRM Test Suite Results");
 		spark.config().setReportName("CRM Report");
 		spark.config().setTheme(Theme.DARK);
@@ -42,7 +47,7 @@ public class ListImpClass implements ITestListener, ISuiteListener {
 
 	public void onFinish(ISuite suite) {
 		System.out.println("Report Backup");
-		
+
 		report.flush();
 	}
 
@@ -50,13 +55,13 @@ public class ListImpClass implements ITestListener, ISuiteListener {
 		System.out.println("----" + result.getMethod().getMethodName() + "----start----");
 		test = report.createTest(result.getMethod().getMethodName());
 		UtilityClassObject.setTest(test);
-		test.log(Status.INFO,result.getMethod().getMethodName()+"-----start-----");
+		test.log(Status.INFO, result.getMethod().getMethodName() + "-----start-----");
 	}
 
 	public void onTestSuccess(ITestResult result) {
 		System.out.println("----" + result.getMethod().getMethodName() + "----end----");
-		test.log(Status.PASS,result.getMethod().getMethodName()+"------completed------");
-		
+		test.log(Status.PASS, result.getMethod().getMethodName() + "------completed------");
+
 	}
 
 	public void onTestFailure(ITestResult result) {
@@ -70,8 +75,7 @@ public class ListImpClass implements ITestListener, ISuiteListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		test.log(Status.FAIL,result.getMethod().getMethodName()+"------FAILED-------");
-		
+		test.log(Status.FAIL, result.getMethod().getMethodName() + "------FAILED-------");
 
 	}
 

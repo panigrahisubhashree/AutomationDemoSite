@@ -2,6 +2,11 @@
 
 package com.AutomationDemoSite.genernic.fileutility;
 
+/**
+ * author Subhashree_Panigrahi
+ * FileUtility class to fetch common data from external property file
+ * 
+ */
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
